@@ -283,31 +283,3 @@ jobs:
           tag_name: ${{ github.ref_name }}
           files: bin/*
           generate_release_notes: true
-
-  Docker:
-    if: ${{ github.event_name != 'pull_request'  }}
-    permissions: write-all
-    needs: [Build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: artifact
-          path: bin/
-
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: bin
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          version: latest
