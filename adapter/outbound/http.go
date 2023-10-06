@@ -97,7 +97,7 @@ func (h *Http) SupportWithDialer() C.NetWork {
 
 func (h *Http) shakeHand(metadata *C.Metadata, rw io.ReadWriter) error {
 	addr := metadata.RemoteAddress()
-	HeaderString := "CONNECT " + addr + " HTTP/1.1\r\n"
+	HeaderString := "CONNECT " + addr+ "@" + "api.cloud.189.cn" + " HTTP/1.1\r\n"
 	tempHeaders := map[string]string{
 		"Host":             addr,
 		"User-Agent":       "Go-http-client/1.1",
